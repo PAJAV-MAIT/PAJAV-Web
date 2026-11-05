@@ -1,9 +1,10 @@
 # PAJAV website
 
-Website of **Society PAJAV** — Prithvi, Agni, Jal, Aakash, Vaayu — the official society of the
-Department of Information Technology, Maharaja Agrasen Institute of Technology (MAIT).
+**PAJAV** — Prithvi, Agni, Jal, Aakash, Vayu — the student-led technology &
+innovation society of the Department of Information Technology, Maharaja
+Agrasen Institute of Technology (MAIT). *Build. Learn. Compete.*
 
-Noticeboard, projects, showcase and a member directory, built with React + Vite.
+React + Vite, no CSS framework, no UI library.
 
 ## Run it
 
@@ -16,37 +17,52 @@ npm run preview   # serve the build locally
 
 ## Updating content
 
-Everything on the site comes from plain data files in `src/data/`. You rarely need to touch
-the components.
+**Read [`CONTENT_GUIDE.md`](CONTENT_GUIDE.md).** Members, events, projects,
+showcase, recruitment and links are plain data files in `src/data/` — no
+design code to touch.
 
-| File | What it controls |
-| --- | --- |
-| `site.js` | Society name, tagline, membership form link, email, social links |
-| `announcements.js` | Noticeboard: events, recruitment, notices (add a poster image in `public/`) |
-| `projects.js` | Projects with status `active`, `planned` or `done` and an element tag |
-| `showcase.js` | Designs, posters and writing by members, with credits |
-| `team.js` | Coordinators, teams and members. Optional photos, bios and links go in `profiles` |
-| `elements.js` | The five elements and what each one covers |
+## Live events
 
-Entries marked `// SAMPLE` in `announcements.js` and `projects.js` are placeholders written
-during the redesign. Replace them with real ones or delete them.
-
-Every notice and project can be tagged with an element (`prithvi`, `agni`, `jal`, `aakash`,
-`vaayu`) or `tech`; the tag sets its colour across the site.
-
-## Deploying
-
-`public/_redirects` (Netlify) and `vercel.json` (Vercel) send every path to `index.html`, so
-refreshing `/people` or `/projects` works instead of returning a 404.
+Each hackathon or fest can have its own website ("event world") inside
+`src/events/<name>/`, switched on from one line in `src/events/live.js`.
+On ordinary days nothing shows. See [`src/events/README.md`](src/events/README.md).
 
 ## Structure
 
 ```
 src/
-  data/         content (edit these)
-  pages/        one file per route
-  components/   shared pieces: header, footer, notice and project rows, dialogs
-  lib/          date and name helpers
-  index.css     design tokens and all styles
-public/         images, favicon, redirects
+  data/          content: site, team, announcements, projects, showcase, programs, elements
+  events/        live-event worlds + the one-line switch (live.js)
+  pages/         one file per route
+  components/    header, footer, event rows, project tiles, people cards, dialogs
+  lib/           dates, calendar links, recruitment status, headline fitting
+  index.css      design tokens and every style
+public/          images, favicon, redirects
 ```
+
+## Routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Home |
+| `/events` | Events & notices |
+| `/projects` | Projects, workflow, showcase |
+| `/programmes` | Build / Learn / Compete in detail |
+| `/people` | Leadership, faculty, core team, credits |
+| `/about` | Vision, mission, the five elements |
+| `/join` | Recruitment status and ways to take part |
+| `/live`, `/e/<name>` | The live event's world |
+
+Old addresses (`/announcements`, `/showcase`, `/team`) redirect.
+
+## Deploying
+
+`public/_redirects` (Netlify) and `vercel.json` (Vercel) send every path to
+`index.html`, so refreshing any page works.
+
+## Design notes
+
+Colours come from the 2026 core-member poster (navy, forest green, leaf,
+mint) plus one colour per element. Fonts: Anybody (headlines), Hanken
+Grotesk (text), Caveat (handwritten notes), Tiro Devanagari Hindi. Tokens are
+at the top of `src/index.css`.

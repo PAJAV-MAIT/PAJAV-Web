@@ -1,0 +1,61 @@
+/* Every rule starts with .ev-starter so nothing leaks into the main site. */
+
+.ev-starter {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #111111;
+  font-family: system-ui, sans-serif;
+  padding: 24px;
+}
+
+.ev-starter a {
+  color: inherit;
+}
+
+.ev-starter__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.ev-starter__btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #111111;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ev-starter__hero,
+.ev-starter__section {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.ev-starter__hero {
+  padding: 18vh 0 10vh;
+}
+
+.ev-starter__when {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.ev-starter h1 {
+  font-size: clamp(3rem, 10vw, 7rem);
+  line-height: 0.95;
+  margin: 12px 0;
+}
+
+.ev-starter__tag {
+  font-size: 1.3rem;
+  max-width: 40ch;
+}
+
+.ev-starter__section {
+  border-top: 1px solid #dddddd;
+  padding: 40px 0;
+}

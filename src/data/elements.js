@@ -1,6 +1,5 @@
 // The five elements PAJAV is named after, in the order of the acronym.
-// `id` is used across announcements and projects to tag work by element.
-// Colours live in index.css as --el-<id>.
+// `id` is used to tag projects and events; the colour lives in index.css (--el-<id>).
 
 export const elements = [
   {
@@ -9,9 +8,8 @@ export const elements = [
     name: "Prithvi",
     devanagari: "पृथ्वी",
     english: "Earth",
-    domain: "Earth conservation",
-    blurb:
-      "Reforestation, soil conservation, waste management and sustainable agriculture — plus getting reusable things to people who need them.",
+    domain: "Land, waste & food",
+    blurb: "Waste management, recycling, sustainable agriculture and green campuses.",
   },
   {
     id: "agni",
@@ -19,9 +17,8 @@ export const elements = [
     name: "Agni",
     devanagari: "अग्नि",
     english: "Fire",
-    domain: "Clean energy",
-    blurb:
-      "Renewable-energy advocacy, energy conservation on campus and fire safety awareness.",
+    domain: "Energy",
+    blurb: "Clean energy, smarter power use and safety systems.",
   },
   {
     id: "jal",
@@ -29,40 +26,31 @@ export const elements = [
     name: "Jal",
     devanagari: "जल",
     english: "Water",
-    domain: "Water protection",
-    blurb:
-      "River restoration, clean water access, rainwater harvesting and cutting water waste.",
+    domain: "Water",
+    blurb: "Clean water access, leak detection, rainwater harvesting and saving every litre.",
   },
   {
     id: "aakash",
     letter: "A",
     name: "Aakash",
     devanagari: "आकाश",
-    english: "Space",
-    domain: "Space & climate science",
-    blurb:
-      "Climate research, space sustainability and astronomy outreach — looking up to understand what happens down here.",
+    english: "Sky",
+    domain: "Climate & space",
+    blurb: "Climate data, satellites, space tech and the science above our heads.",
   },
   {
-    id: "vaayu",
+    id: "vayu",
     letter: "V",
-    name: "Vaayu",
+    name: "Vayu",
     devanagari: "वायु",
     english: "Air",
     domain: "Air quality",
-    blurb:
-      "Pollution reduction, emission awareness and green spaces in a city that needs them.",
+    blurb: "Air-quality sensing, pollution awareness and cleaner cities.",
   },
 ];
 
-// Work that isn't tied to a single element (the laptop at the centre of the logo).
-export const techTag = {
-  id: "tech",
-  name: "Tech",
-  english: "Technology",
-  domain: "Technology for the elements",
-};
+// For work that serves people and communities rather than one element
+// (the laptop at the centre of the logo).
+export const techTag = { id: "tech", name: "Tech for good", english: "Technology", domain: "Society" };
 
-export const elementById = Object.fromEntries(
-  [...elements, techTag].map((e) => [e.id, e])
-);
+export const elementById = Object.fromEntries([...elements, techTag].map((e) => [e.id, e]));

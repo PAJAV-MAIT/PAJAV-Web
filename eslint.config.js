@@ -29,6 +29,10 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
+      // plain apostrophes in copy ("What's on") are fine in React
+      'react/no-unescaped-entities': 'off',
+      // props are documented in each component; no PropTypes needed
+      'react/prop-types': 'off',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

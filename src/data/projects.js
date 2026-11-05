@@ -1,110 +1,121 @@
-// Projects shown on the Projects page and the home page.
+// ─────────────────────────────────────────────────────────────────────────
+// Projects. See CONTENT_GUIDE.md → "Projects".
 //
-// status    "active" (in progress) | "planned" | "done"
-// progress  0–100, only shown for active projects
-// element   prithvi | agni | jal | aakash | vaayu | tech
-// teams     names that match a team in team.js
-// when      free text shown next to the status, e.g. "Feb 2025"
+// {
+//   id:        "unique-slug",
+//   title:     "Project name",
+//   status:    "active" (being built) | "idea" (in the idea pool) | "done",
+//   element:   "prithvi" | "agni" | "jal" | "aakash" | "vayu" | "tech",
+//   summary:   "One or two sentences: the problem and the solution.",
+//   stack:     ["IoT", "React"],          // optional tech labels
+//   sdg:       "SDG 11",                  // optional
+//   lead:      "Name",                    // optional
+//   lookingFor:["Hardware", "Design"],    // optional, shown as "Looking for"
+//   image:     "/projects/slug.webp",     // optional cover; without it a cover is drawn
+//   when:      "Feb 2025",                // optional, for done projects
+//   links:     [{ label: "Repo", href: "https://…" }],
+// }
 //
-// Entries marked SAMPLE are proposals written for the redesign, based on the
-// society's five domains. Confirm, edit or delete them.
+// Entries marked SAMPLE are example ideas based on the five elements.
+// Replace them with real proposals or delete them.
+// ─────────────────────────────────────────────────────────────────────────
 
 export const projects = [
   {
     id: "website",
     title: "PAJAV website",
     status: "active",
-    progress: 70,
     element: "tech",
     summary:
-      "The society's home on the web: noticeboard, projects, showcase and member directory.",
-    teams: ["Website"],
-    links: [{ label: "Source", href: "https://github.com/vaibhav092/PAJAV" }],
-  },
-  {
-    id: "social",
-    title: "Social media presence",
-    status: "active",
-    progress: 40,
-    element: "tech",
-    summary:
-      "Regular posts on drives, results and environmental awareness so students hear about PAJAV first.",
-    teams: ["Social Media"],
+      "This site: events, projects, people and a live space for every event we host. Open source, so anyone at MAIT can contribute.",
+    stack: ["React", "Vite"],
+    lookingFor: ["Frontend", "Design"],
+    links: [{ label: "Repository", href: "https://github.com/vaibhav092/PAJAV" }],
   },
   {
     // SAMPLE
     id: "aqi-monitor",
     title: "Campus air-quality monitor",
-    status: "planned",
-    element: "vaayu",
+    status: "idea",
+    element: "vayu",
     summary:
-      "Low-cost particulate sensors in a few blocks, with a public dashboard showing readings through the day.",
-    teams: ["Website", "Outreach"],
-  },
-  {
-    // SAMPLE
-    id: "ewaste",
-    title: "E-waste collection point",
-    status: "planned",
-    element: "prithvi",
-    summary:
-      "A collection box for dead chargers, cables and batteries, handed over to a certified recycler each semester.",
-    teams: ["Event Planner", "Outreach"],
+      "Low-cost particulate sensors in a few blocks, streaming readings to a public dashboard through the day.",
+    stack: ["IoT", "ESP32", "Dashboard"],
+    sdg: "SDG 11",
+    lookingFor: ["Hardware", "Backend"],
   },
   {
     // SAMPLE
     id: "lab-energy",
-    title: "Computer lab energy audit",
-    status: "planned",
+    title: "Smart lab energy meter",
+    status: "idea",
     element: "agni",
     summary:
-      "Measure how much power idle lab machines draw and propose simple shutdown schedules.",
-    teams: ["Report Preparation"],
+      "Measure what idle lab machines draw and suggest shutdown schedules that save power without getting in anyone's way.",
+    stack: ["IoT", "Data analysis"],
+    sdg: "SDG 7",
+    lookingFor: ["Embedded", "Data"],
   },
   {
     // SAMPLE
-    id: "water-audit",
-    title: "Rainwater harvesting audit",
-    status: "planned",
+    id: "leak-alert",
+    title: "Water leak alert network",
+    status: "idea",
     element: "jal",
     summary:
-      "Map rooftop catchment on campus and estimate how much rainwater could be stored each monsoon.",
-    teams: ["Report Preparation", "Outreach"],
+      "Flow sensors on campus water lines that flag unusual use, so leaks are caught in hours instead of weeks.",
+    stack: ["IoT", "ML"],
+    sdg: "SDG 6",
+    lookingFor: ["Hardware", "ML"],
   },
   {
     // SAMPLE
-    id: "sky-night",
-    title: "Night sky & space-tech talk",
-    status: "planned",
+    id: "ewaste-sorter",
+    title: "E-waste sorting with computer vision",
+    status: "idea",
+    element: "prithvi",
+    summary:
+      "A camera-based classifier that helps a campus collection point sort chargers, batteries and boards for recycling.",
+    stack: ["AI/ML", "Computer vision"],
+    sdg: "SDG 12",
+    lookingFor: ["ML", "Hardware"],
+  },
+  {
+    // SAMPLE
+    id: "heat-map",
+    title: "Delhi heat & rain explorer",
+    status: "idea",
     element: "aakash",
     summary:
-      "An evening session on satellites that watch the climate, followed by telescope viewing if the sky allows.",
-    teams: ["Event Planner"],
+      "Open satellite and weather data turned into a simple map of heat and rainfall across the city, year by year.",
+    stack: ["Python", "Open data", "Maps"],
+    sdg: "SDG 13",
+    lookingFor: ["Data", "Frontend"],
   },
   {
     id: "donation-drive",
     title: "Donation Drive 2025",
     status: "done",
-    when: "18 Feb 2025",
+    when: "Feb 2025",
     element: "prithvi",
     summary:
       "Collected used clothes, toys and books for people who need them, with a focus on promoting literacy.",
-    teams: ["Event Planner", "Poster"],
+    image: "/donation-drive-2025.webp",
   },
   {
     id: "identity",
-    title: "Logo, tagline & identity",
+    title: "Five-element identity",
     status: "done",
     when: "2025",
     element: "tech",
     summary:
-      "The five-element logo with the laptop at its centre, and the line “Extending hope and empowering future”.",
-    teams: ["Logo", "Tagline"],
+      "The PAJAV logo: earth, fire, water, sky and air around a laptop — technology at the centre of the five elements.",
+    image: "/logo.webp",
   },
 ];
 
 export const statusLabel = {
-  active: "In progress",
-  planned: "Planned",
-  done: "Completed",
+  active: "Building now",
+  idea: "Idea pool",
+  done: "Shipped",
 };
