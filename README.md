@@ -55,14 +55,8 @@ public/          images, favicon, redirects
 
 Old addresses (`/announcements`, `/showcase`, `/team`) redirect.
 
-## Deploying
-
-`public/_redirects` (Netlify) and `vercel.json` (Vercel) send every path to
-`index.html`, so refreshing any page works.
-
 ## Design notes
 
-Colours come from the 2026 core-member poster (navy, forest green, leaf,
-mint) plus one colour per element. Fonts: Anybody (headlines), Hanken
-Grotesk (text), Caveat (handwritten notes), Tiro Devanagari Hindi. Tokens are
-at the top of `src/index.css`.
+Colours: navy, forest green, leaf, mint plus one colour per element. 
+Fonts: Anybody (headlines), Hanken Grotesk (text), Caveat (handwritten notes), Tiro Devanagari Hindi.
+Tokens are at the top of `src/index.css`.
