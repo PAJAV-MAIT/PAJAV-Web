@@ -4,7 +4,6 @@ import { CloseIcon, MenuIcon } from "./Icons";
 import { entryHref, getLiveEvent } from "../events/registry";
 
 export const navItems = [
-  { to: "/", label: "Home", end: true },
   { to: "/events", label: "Events" },
   { to: "/projects", label: "Projects" },
   { to: "/programmes", label: "Programmes" },
