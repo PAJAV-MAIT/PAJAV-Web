@@ -31,7 +31,7 @@ export default function People() {
           <h2 id="lead-title" className="sr-only">
             Leadership team
           </h2>
-          <ul className="people-grid people-grid--4">
+          <ul className="leaders">
             {leadership.map((p) => (
               <Portrait key={p.name} person={p} onOpen={setPerson} />
             ))}
@@ -45,7 +45,7 @@ export default function People() {
           <h2 id="fac-title" className="sr-only">
             Faculty coordinators
           </h2>
-          <ul className="people-grid people-grid--3">
+          <ul className="leaders leaders--3">
             {faculty.map((p) => (
               <Portrait key={p.name} person={p} onOpen={setPerson} />
             ))}
@@ -65,7 +65,7 @@ export default function People() {
                 <h3 className="split__title" style={{ marginBottom: 16 }}>
                   {t.team}
                 </h3>
-                <ul className="people-grid">
+                <ul className="leaders">
                   {t.members.map((m) => (
                     <Portrait key={m.name} person={{ ...m, team: t.team }} onOpen={setPerson} />
                   ))}
