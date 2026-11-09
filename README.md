@@ -6,8 +6,6 @@ Agrasen Institute of Technology (MAIT). *Build. Learn. Compete.*
 
 React + Vite, no CSS framework, no UI library.
 
-- Live site: https://pajav-mait.sawantchandra2410.workers.dev
-- Repository: https://github.com/PAJAV-MAIT/PAJAV-Web
 
 ## Run it
 
