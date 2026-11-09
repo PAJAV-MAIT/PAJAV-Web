@@ -30,7 +30,7 @@ export const projects = [
       "This site: events, projects, people and a live space for every event we host. Open source, so anyone at MAIT can contribute.",
     stack: ["React", "Vite"],
     lookingFor: ["Frontend", "Design"],
-    links: [{ label: "Repository", href: "https://github.com/vaibhav092/PAJAV" }],
+    links: [{ label: "Repository", href: "https://github.com/PAJAV-MAIT/PAJAV-Web" }],
   },
   {
     // SAMPLE

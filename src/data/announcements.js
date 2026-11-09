@@ -46,7 +46,7 @@ export const announcements = [
     date: "2026-11",
     element: "tech",
     tags: ["Open source"],
-    link: { label: "Contribute on GitHub", href: "https://github.com/vaibhav092/PAJAV" },
+    link: { label: "Contribute on GitHub", href: "https://github.com/PAJAV-MAIT/PAJAV-Web" },
   },
   {
     id: "donation-drive-2025",

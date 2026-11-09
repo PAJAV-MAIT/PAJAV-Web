@@ -20,6 +20,8 @@ export const site = {
   intro:
     "A community where students learn by building real-world solutions, collaborate through open source, and turn their technical skills into meaningful opportunities.",
 
+  url: "https://pajav-mait.sawantchandra2410.workers.dev", // the live website
+  repo: "https://github.com/PAJAV-MAIT/PAJAV-Web", // source code
   departmentSite: "https://it.mait.ac.in/",
   email: "", // e.g. "pajav@mait.ac.in" — appears in the footer once filled in
 
@@ -27,7 +29,7 @@ export const site = {
   social: {
     instagram: "",
     linkedin: "",
-    github: "https://github.com/vaibhav092/PAJAV",
+    github: "https://github.com/PAJAV-MAIT/PAJAV-Web",
     whatsapp: "",
   },
 

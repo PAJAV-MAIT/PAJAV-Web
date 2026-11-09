@@ -32,9 +32,16 @@ Lines starting with `//` are notes for you; the website ignores them.
 
 ### Editing without installing anything
 
-On GitHub, open the file, click the pencil icon (Edit), make the change, and
-click **Commit changes**. If the site is connected to Netlify or Vercel, it
-rebuilds by itself in a minute or two.
+On GitHub ([PAJAV-MAIT/PAJAV-Web](https://github.com/PAJAV-MAIT/PAJAV-Web)),
+open the file, click the pencil icon (Edit) and make the change. Because
+`main` is protected, GitHub asks you to **Create a new branch and start a
+pull request** — do that, add a short description, and a maintainer will
+review and merge it. Once it's merged, the live site
+(https://pajav-mait.sawantchandra2410.workers.dev) updates if Cloudflare is
+set to build from the repository.
+
+Working on your computer instead? Follow the branch and pull-request steps
+under **Contributing** in [`README.md`](README.md).
 
 ### Editing on your computer
 

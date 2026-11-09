@@ -6,6 +6,9 @@ Agrasen Institute of Technology (MAIT). *Build. Learn. Compete.*
 
 React + Vite, no CSS framework, no UI library.
 
+- Live site: https://pajav-mait.sawantchandra2410.workers.dev
+- Repository: https://github.com/PAJAV-MAIT/PAJAV-Web
+
 ## Run it
 
 ```bash
@@ -14,6 +17,53 @@ npm run dev       # http://localhost:5173
 npm run build     # production build in dist/
 npm run preview   # serve the build locally
 ```
+
+## Contributing
+
+`main` is protected: nobody pushes to it directly. Every change goes through
+a branch and a pull request, which a maintainer reviews and merges.
+
+**One time**
+
+```bash
+git clone https://github.com/PAJAV-MAIT/PAJAV-Web.git
+cd PAJAV-Web
+npm install
+```
+
+**For every new piece of work**
+
+```bash
+git checkout main
+git pull                              # get the latest main
+git checkout -b feature/short-name    # new branch
+# ...make changes, check them with npm run dev...
+git add .
+git commit -m "Describe the change"
+git push -u origin feature/short-name
+```
+
+Then on GitHub click **Compare & pull request**, describe the change, and
+click **Create pull request**.
+
+- **Changes requested?** Edit, commit and `git push` again on the same
+  branch. The pull request updates automatically.
+- **`main` changed while you were working?** Bring your branch up to date:
+
+  ```bash
+  git checkout main && git pull
+  git checkout feature/short-name
+  git merge main      # fix any conflicts, commit, then git push
+  ```
+
+Name branches by what they do: `feature/events-filter`, `fix/navbar-mobile`,
+`content/add-core-team`. Run `npm run build` before opening a pull request
+to make sure the site still builds.
+
+**Only updating content** (members, events, projects)? You can do it on
+GitHub without installing anything: open the file, click the pencil icon,
+edit, then choose **Create a new branch and start a pull request**. See
+[`CONTENT_GUIDE.md`](CONTENT_GUIDE.md).
 
 ## Updating content
 
@@ -37,7 +87,7 @@ src/
   components/    header, footer, event rows, project tiles, people cards, dialogs
   lib/           dates, calendar links, recruitment status, headline fitting
   index.css      design tokens and every style
-public/          images, favicon, redirects
+public/          images, favicon
 ```
 
 ## Routes
