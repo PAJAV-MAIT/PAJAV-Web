@@ -1761,11 +1761,7 @@ svg.i {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.leaders--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 32px);
 }
 
 .leaders > li {
@@ -1774,12 +1770,10 @@ svg.i {
 }
 
 .leader {
-  position: relative;
-  border-radius: var(--r);
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  background: var(--c);
-  color: #fff;
+  display: block;
+  overflow: visible;
+  background: transparent;
+  color: var(--navy);
   border: 0;
   padding: 0;
   cursor: pointer;
@@ -1787,27 +1781,49 @@ svg.i {
   width: 100%;
 }
 
+.leader__portrait {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--mint-2);
+  color: var(--forest);
+}
+
+.leader__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.leader__initials {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
 .leader__cap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 40px 16px 14px;
-  background: linear-gradient(transparent, rgb(10 25 38 / 0.82));
-  z-index: 2;
+  display: block;
+  padding-top: 12px;
 }
 
 .leader__name {
   display: block;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.05rem;
   line-height: 1.2;
+  color: var(--navy);
 }
 
 .leader__role {
   display: block;
   font-size: 0.82rem;
-  opacity: 0.85;
+  font-weight: 400;
+  color: var(--forest-2);
 }
 
 .leader__meta {
@@ -1815,10 +1831,13 @@ svg.i {
   margin-top: 3px;
   font-size: 0.72rem;
   line-height: 1.35;
-  opacity: 0.78;
+  color: var(--navy-2);
 }
 
 .people__core-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 800;
   margin-bottom: 28px;
 }
 
@@ -1832,6 +1851,18 @@ svg.i {
 
 .people__department h3 {
   margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.people-section .label {
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .people__department-description {
@@ -1841,106 +1872,27 @@ svg.i {
 }
 
 @media (max-width: 900px) {
-  .leaders,
-  .leaders--3 {
+  .leaders {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 580px) {
-  .leaders,
-  .leaders--3 {
-    grid-template-columns: 1fr;
+  .leaders {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
+  }
+
+  .leader__name {
+    font-size: 0.95rem;
   }
 }
 
-/* ───────────────────────── UW second-photo flip (people) ── */
-
-.flip {
-  display: block;
-  position: relative;
-  aspect-ratio: 1 / 1;
-  perspective: 1000px;
-}
-
-.leader .flip {
-  position: absolute;
-  inset: 0;
-  aspect-ratio: auto;
-}
-
-.flip__inner {
-  position: absolute;
-  inset: 0;
-  display: block;
-  transform-style: preserve-3d;
-  transition: transform 0.6s var(--ease);
-}
-
-.leader:hover .flip__inner,
-.leader:focus-visible .flip__inner {
-  transform: rotateY(180deg);
-}
-
-.flip__face {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.flip__face img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* UW: black-and-white portrait on the front, colour on the back */
-.flip__front img {
-  filter: grayscale(1) contrast(1.05);
-}
-
-.flip__back {
-  transform: rotateY(180deg);
-  background: var(--c-ink);
-}
-
-.leader .flip__front {
-  background:
-    radial-gradient(80% 60% at 30% 20%, color-mix(in srgb, white 25%, transparent), transparent 70%),
-    var(--c-ink);
-}
-
-.leader .flip__initials {
-  color: color-mix(in srgb, white 88%, transparent);
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-variation-settings: "wdth" 125;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  letter-spacing: -0.03em;
-  margin-bottom: 18%;
-}
-
-.leader .flip__note {
-  padding: 12%;
-  font-family: var(--font-hand);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-  line-height: 1.05;
-  text-align: center;
-  color: #fff;
-  rotate: -4deg;
-  margin-bottom: 22%;
-}
-
-/* ───────────────────────────────────────────── UW credits ── */
+/* ───────────────────────────────────────────── PAJAV credits ── */
 
 .credits-block {
   background: var(--forest);
-  color: var(--on-dark);
+  color: var(--mint);
   padding-block: clamp(48px, 7vw, 96px);
 }
 
@@ -1955,33 +1907,43 @@ svg.i {
 }
 
 .credits {
-  columns: 4 220px;
-  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 40px;
 }
 
-.credits section {
-  break-inside: avoid;
-  margin-bottom: 28px;
+.credits__item {
+  padding-top: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--lime) 45%, transparent);
 }
 
 .credits h3 {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0;
   color: var(--lime);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.credits ul {
-  list-style: none;
+.credits p {
+  max-width: 38ch;
+  color: var(--mint);
   font-size: 0.98rem;
   line-height: 1.55;
 }
 
-.credits li span {
-  color: var(--on-dark-2);
-  font-size: 0.85rem;
+@media (max-width: 760px) {
+  .credits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .credits {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
 }
 
 /* ──────────────────────────────────────────────── showcase ── */
