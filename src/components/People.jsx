@@ -1,32 +1,41 @@
 // Editorial profile cards for the People page.
+import { useState } from "react";
 import { elementFor, initials } from "../lib/format";
 
 export function LeaderCard({ person, onOpen }) {
+  const [flipped, setFlipped] = useState(false);
+
   return (
-    <button
-      type="button"
-      className="leader"
-      data-el={elementFor(person.name)}
-      onClick={() => onOpen(person)}
-      aria-label={`View ${person.name}, ${person.role}`}
-    >
-      <span className="leader__portrait" aria-hidden="true">
-        {person.photo ? (
-          <img src={person.photo} alt="" loading="lazy" />
-        ) : (
-          <span className="leader__initials">{initials(person.name)}</span>
-        )}
-      </span>
-      <span className="leader__cap">
+    <article className="leader" data-el={elementFor(person.name)} data-flipped={flipped}>
+      <button
+        type="button"
+        className="leader__flip"
+        aria-label={`${flipped ? "Show portrait of" : "Flip profile for"} ${person.name}`}
+        aria-pressed={flipped}
+        onClick={() => setFlipped((current) => !current)}
+      >
+        <span className="flip__inner">
+          <span className="flip__face flip__front">
+            {person.photo ? (
+              <img src={person.photo} alt="" loading="lazy" />
+            ) : (
+              <span className="leader__initials">{initials(person.name)}</span>
+            )}
+          </span>
+          <span className="flip__face flip__back">
+            {person.photo2 ? (
+              <img src={person.photo2} alt="" loading="lazy" />
+            ) : (
+              <span className="flip__note">{person.funFact || person.role}</span>
+            )}
+          </span>
+        </span>
+      </button>
+      <button type="button" className="leader__cap" onClick={() => onOpen(person)}>
         <span className="leader__name">{person.name}</span>
         <span className="leader__role">{person.role}</span>
-        {(person.department || person.team || person.year) && (
-          <span className="leader__meta">
-            {[person.department || person.team, person.year].filter(Boolean).join(" · ")}
-          </span>
-        )}
-      </span>
-    </button>
+      </button>
+    </article>
   );
 }
 

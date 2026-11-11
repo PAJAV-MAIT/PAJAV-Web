@@ -1770,28 +1770,53 @@ svg.i {
 }
 
 .leader {
-  display: block;
-  overflow: visible;
-  background: transparent;
-  color: var(--navy);
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
   width: 100%;
+  color: var(--navy);
 }
 
-.leader__portrait {
-  display: grid;
-  place-items: center;
+.leader__flip {
+  position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 1;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   background: var(--mint-2);
-  color: var(--forest);
+  cursor: pointer;
+  perspective: 1000px;
 }
 
-.leader__portrait img {
+.flip__inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform 0.6s var(--ease);
+}
+
+.leader__flip:focus-visible .flip__inner,
+.leader[data-flipped="true"] .flip__inner {
+  transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .leader:hover .flip__inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.flip__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip__face img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1799,22 +1824,46 @@ svg.i {
   filter: grayscale(100%);
 }
 
+.flip__back {
+  transform: rotateY(180deg);
+  background: var(--forest);
+  color: var(--lime);
+}
+
 .leader__initials {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.04em;
+  color: var(--forest);
+}
+
+.flip__note {
+  max-width: 24ch;
+  padding: 12%;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  line-height: 1.25;
+  text-align: center;
 }
 
 .leader__cap {
   display: block;
-  padding-top: 12px;
+  width: 100%;
+  padding: 12px 0 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .leader__name {
   display: block;
+  font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
   line-height: 1.2;
   color: var(--navy);
 }
@@ -1823,14 +1872,6 @@ svg.i {
   display: block;
   font-size: 0.82rem;
   font-weight: 400;
-  color: var(--forest-2);
-}
-
-.leader__meta {
-  display: block;
-  margin-top: 3px;
-  font-size: 0.72rem;
-  line-height: 1.35;
   color: var(--navy-2);
 }
 
@@ -1865,12 +1906,6 @@ svg.i {
   text-transform: uppercase;
 }
 
-.people__department-description {
-  max-width: 680px;
-  margin-bottom: 16px;
-  color: var(--navy-2);
-}
-
 @media (max-width: 900px) {
   .leaders {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1897,11 +1932,12 @@ svg.i {
 }
 
 .credits-block h2 {
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 900;
-  font-variation-settings: "wdth" 125;
-  line-height: 0.85;
-  letter-spacing: -0.035em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 800;
+  font-variation-settings: "wdth" 100;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
   margin-bottom: clamp(28px, 4vw, 48px);
 }
@@ -1909,7 +1945,7 @@ svg.i {
 .credits {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px 40px;
+  gap: 32px clamp(20px, 3vw, 44px);
 }
 
 .credits__item {
@@ -1918,8 +1954,8 @@ svg.i {
 }
 
 .credits h3 {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--lime);
   margin-bottom: 8px;
@@ -1929,6 +1965,14 @@ svg.i {
   max-width: 38ch;
   color: var(--mint);
   font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+.credits .credits__contributors {
+  margin-top: 8px;
+  list-style: none;
+  color: var(--lime);
+  font-size: 0.86rem;
   line-height: 1.55;
 }
 

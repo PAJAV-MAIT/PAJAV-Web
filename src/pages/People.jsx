@@ -1,29 +1,24 @@
 import { useState } from "react";
 import { coreTeams, faculty, leadership, session } from "../data/team";
+import { showcase } from "../data/showcase";
 import { Portrait } from "../components/People";
 import PersonDialog from "../components/PersonDialog";
 import { Label, PageTitle } from "../components/ui";
 
+const logoContributors = showcase.find((work) => work.id === "logo")?.credits || [];
+const donationPosterContributors = showcase.find((work) => work.id === "donation-poster")?.credits || [];
+
 const credits = [
   {
-    title: "Website & Engineering",
-    description: "Frontend React/Vite development, Three.js 3D globe, hosting & CI/CD.",
+    title: "The PAJAV Logo",
+    contributors: logoContributors,
   },
   {
-    title: "Logo & Brand Identity",
-    description: "Wordmark, element iconography, typography & brand guidelines.",
+    title: "Donation Drive Poster",
+    contributors: donationPosterContributors,
   },
   {
-    title: "Posters & Print",
-    description: "Recruitment posters, event banners, orientation mailers.",
-  },
-  {
-    title: "Portraits & Photography",
-    description: "Studio member portraits, event documentation.",
-  },
-  {
-    title: "Logistics & Event Setup",
-    description: "Auditorium AV setup, registration desk, refreshments.",
+    title: "Green Map",
   },
 ];
 
@@ -74,7 +69,6 @@ export default function People() {
           {coreTeams.map((t) => (
             <div key={t.team} className="people__department">
               <h3>{t.team}</h3>
-              <p className="people__department-description">{t.description}</p>
               <ul className="leaders">
                 {t.members.map((m) => (
                   <Portrait key={m.name} person={{ ...m, team: t.team }} onOpen={setPerson} />
@@ -92,7 +86,13 @@ export default function People() {
             {credits.map((credit) => (
               <section key={credit.title} className="credits__item">
                 <h3>{credit.title}</h3>
-                <p>{credit.description}</p>
+                {credit.contributors?.length > 0 && (
+                  <ul className="credits__contributors">
+                    {credit.contributors.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                )}
               </section>
             ))}
           </div>
