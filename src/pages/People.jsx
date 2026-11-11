@@ -3,84 +3,79 @@ import { coreTeams, faculty, leadership, session } from "../data/team";
 import { showcase } from "../data/showcase";
 import { Portrait } from "../components/People";
 import PersonDialog from "../components/PersonDialog";
-import { Label, Note, PageTitle } from "../components/ui";
+import { Label, PageTitle } from "../components/ui";
+
+const logoContributors = showcase.find((work) => work.id === "logo")?.credits || [];
+const donationPosterContributors = showcase.find((work) => work.id === "donation-poster")?.credits || [];
+
+const credits = [
+  {
+    title: "The PAJAV Logo",
+    contributors: logoContributors,
+  },
+  {
+    title: "Donation Drive Poster",
+    contributors: donationPosterContributors,
+  },
+  {
+    title: "Green Map",
+  },
+];
 
 export default function People() {
   const [person, setPerson] = useState(null);
-  const hasCore = coreTeams.some((t) => t.members?.length);
-
-  // UW-style credits: everyone who made PAJAV happen, grouped by role
-  const credits = [
-    { title: "Leadership", people: leadership.map((p) => [p.name, p.role]) },
-    { title: "Faculty", people: faculty.map((p) => [p.name, p.role]) },
-    ...coreTeams.map((t) => ({ title: t.team, people: t.members.map((m) => [m.name, m.role]) })),
-    ...showcase
-      .filter((w) => w.credits.length)
-      .map((w) => ({ title: w.title, people: w.credits.map((n) => [n]) })),
-  ];
 
   return (
     <>
-      <PageTitle title="People">
-        The students and faculty behind PAJAV, session {session}. Select anyone to see more.
+      <PageTitle title="PEOPLE">
+        Meet the people behind PAJAV — the student leaders, passionate teams and faculty mentors working together to
+        turn ideas into impact.
       </PageTitle>
 
-      <section className="section section--tight" aria-labelledby="lead-title">
+      <section className="section section--tight people-section" aria-labelledby="lead-title">
         <div className="wrap">
-          <Label>Leadership team</Label>
+          <Label>Leadership Team</Label>
           <h2 id="lead-title" className="sr-only">
             Leadership team
           </h2>
           <ul className="leaders">
             {leadership.map((p) => (
-              <Portrait key={p.name} person={p} onOpen={setPerson} />
+              <Portrait key={p.name} person={{ ...p, department: "Leadership Team" }} onOpen={setPerson} />
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="fac-title">
+      <section className="section section--tight people-section" aria-labelledby="fac-title">
         <div className="wrap">
-          <Label>Faculty coordinators</Label>
+          <Label>Faculty Coordinators</Label>
           <h2 id="fac-title" className="sr-only">
             Faculty coordinators
           </h2>
-          <ul className="leaders leaders--3">
+          <ul className="leaders">
             {faculty.map((p) => (
-              <Portrait key={p.name} person={p} onOpen={setPerson} />
+              <Portrait key={p.name} person={{ ...p, department: "Faculty Coordinators" }} onOpen={setPerson} />
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="section section--tight" aria-labelledby="core-title">
+      <section className="section section--tight people-section" aria-labelledby="core-title">
         <div className="wrap">
-          <Label>Core team</Label>
-          <h2 id="core-title" className="sr-only">
-            Core team
+          <Label>PAJAV Teams</Label>
+          <h2 id="core-title" className="people__core-title">
+            Core Team {session}
           </h2>
-          {hasCore ? (
-            coreTeams.map((t) => (
-              <div key={t.team} style={{ marginBottom: 40 }}>
-                <h3 className="split__title" style={{ marginBottom: 16 }}>
-                  {t.team}
-                </h3>
-                <ul className="leaders">
-                  {t.members.map((m) => (
-                    <Portrait key={m.name} person={{ ...m, team: t.team }} onOpen={setPerson} />
-                  ))}
-                </ul>
-              </div>
-            ))
-          ) : (
-            <div className="soon">
-              <Note>Introducing soon</Note>
-              <p>
-                The {session} core team has been selected. Names, teams and photos go up here as soon as the
-                introductions are ready.
-              </p>
+          {coreTeams.map((t) => (
+            <div key={t.team} className="people__department">
+              <h3>{t.team}</h3>
+              <ul className="leaders">
+                {t.members.map((m) => (
+                  <Portrait key={m.name} person={{ ...m, team: t.team }} onOpen={setPerson} />
+                ))}
+              </ul>
             </div>
-          )}
+          ))}
         </div>
       </section>
 
@@ -88,22 +83,16 @@ export default function People() {
         <div className="wrap">
           <h2 id="credits-title">Credits</h2>
           <div className="credits">
-            {credits.map((c) => (
-              <section key={c.title}>
-                <h3>{c.title}</h3>
-                <ul>
-                  {c.people.map(([name, role]) => (
-                    <li key={name}>
-                      {name}
-                      {role && (
-                        <>
-                          <br />
-                          <span>{role}</span>
-                        </>
-                      )}
-                    </li>
-                  ))}
-                </ul>
+            {credits.map((credit) => (
+              <section key={credit.title} className="credits__item">
+                <h3>{credit.title}</h3>
+                {credit.contributors?.length > 0 && (
+                  <ul className="credits__contributors">
+                    {credit.contributors.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                )}
               </section>
             ))}
           </div>

@@ -1761,11 +1761,7 @@ svg.i {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.leaders--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.5vw, 32px);
 }
 
 .leaders > li {
@@ -1774,89 +1770,21 @@ svg.i {
 }
 
 .leader {
-  position: relative;
-  border-radius: var(--r);
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  background: var(--c);
-  color: #fff;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  text-align: left;
   width: 100%;
+  color: var(--navy);
 }
 
-.leader__cap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 40px 16px 14px;
-  background: linear-gradient(transparent, rgb(10 25 38 / 0.82));
-  z-index: 2;
-}
-
-.leader__name {
-  display: block;
-  font-weight: 700;
-  font-size: 1.05rem;
-  line-height: 1.2;
-}
-
-.leader__role {
-  display: block;
-  font-size: 0.82rem;
-  opacity: 0.85;
-}
-
-@media (max-width: 900px) {
-  .leaders,
-  .leaders--3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 580px) {
-  .leaders,
-  .leaders--3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.soon {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: center;
-  padding: 26px;
-  border: 1.5px dashed var(--navy-2);
-  border-radius: var(--r);
-}
-
-.soon .note {
-  font-size: 1.5rem;
-}
-
-@media (max-width: 600px) {
-  .soon {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ───────────────────────── UW second-photo flip (people) ── */
-
-.flip {
-  display: block;
+.leader__flip {
   position: relative;
-  aspect-ratio: 1 / 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: var(--mint-2);
+  cursor: pointer;
   perspective: 1000px;
-}
-
-.leader .flip {
-  position: absolute;
-  inset: 0;
-  aspect-ratio: auto;
 }
 
 .flip__inner {
@@ -1867,9 +1795,15 @@ svg.i {
   transition: transform 0.6s var(--ease);
 }
 
-.leader:hover .flip__inner,
-.leader:focus-visible .flip__inner {
+.leader__flip:focus-visible .flip__inner,
+.leader[data-flipped="true"] .flip__inner {
   transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .leader:hover .flip__inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .flip__face {
@@ -1883,95 +1817,177 @@ svg.i {
 }
 
 .flip__face img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* UW: black-and-white portrait on the front, colour on the back */
-.flip__front img {
-  filter: grayscale(1) contrast(1.05);
+  filter: grayscale(100%);
 }
 
 .flip__back {
   transform: rotateY(180deg);
-  background: var(--c-ink);
+  background: var(--forest);
+  color: var(--lime);
 }
 
-.leader .flip__front {
-  background:
-    radial-gradient(80% 60% at 30% 20%, color-mix(in srgb, white 25%, transparent), transparent 70%),
-    var(--c-ink);
-}
-
-.leader .flip__initials {
-  color: color-mix(in srgb, white 88%, transparent);
+.leader__initials {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-variation-settings: "wdth" 125;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  letter-spacing: -0.03em;
-  margin-bottom: 18%;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--forest);
 }
 
-.leader .flip__note {
+.flip__note {
+  max-width: 24ch;
   padding: 12%;
-  font-family: var(--font-hand);
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-  line-height: 1.05;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  line-height: 1.25;
   text-align: center;
-  color: #fff;
-  rotate: -4deg;
-  margin-bottom: 22%;
 }
 
-/* ───────────────────────────────────────────── UW credits ── */
+.leader__cap {
+  display: block;
+  width: 100%;
+  padding: 12px 0 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.leader__name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+.leader__role {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--navy-2);
+}
+
+.people__core-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 800;
+  margin-bottom: 28px;
+}
+
+.people__department {
+  margin-bottom: 40px;
+}
+
+.people__department:last-child {
+  margin-bottom: 0;
+}
+
+.people__department h3 {
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.people-section .label {
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .leaders {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .leaders {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
+  }
+
+  .leader__name {
+    font-size: 0.95rem;
+  }
+}
+
+/* ───────────────────────────────────────────── PAJAV credits ── */
 
 .credits-block {
   background: var(--forest);
-  color: var(--on-dark);
+  color: var(--mint);
   padding-block: clamp(48px, 7vw, 96px);
 }
 
 .credits-block h2 {
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 900;
-  font-variation-settings: "wdth" 125;
-  line-height: 0.85;
-  letter-spacing: -0.035em;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 800;
+  font-variation-settings: "wdth" 100;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
   margin-bottom: clamp(28px, 4vw, 48px);
 }
 
 .credits {
-  columns: 4 220px;
-  column-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px clamp(20px, 3vw, 44px);
 }
 
-.credits section {
-  break-inside: avoid;
-  margin-bottom: 28px;
+.credits__item {
+  padding-top: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--lime) 45%, transparent);
 }
 
 .credits h3 {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 700;
-  letter-spacing: 0;
   color: var(--lime);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.credits ul {
-  list-style: none;
+.credits p {
+  max-width: 38ch;
+  color: var(--mint);
   font-size: 0.98rem;
   line-height: 1.55;
 }
 
-.credits li span {
-  color: var(--on-dark-2);
-  font-size: 0.85rem;
+.credits .credits__contributors {
+  margin-top: 8px;
+  list-style: none;
+  color: var(--lime);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .credits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .credits {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
 }
 
 /* ──────────────────────────────────────────────── showcase ── */
@@ -2537,6 +2553,27 @@ dialog::backdrop {
   color: var(--navy-2);
 }
 
+.profile__details {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.profile__details > div {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) 1fr;
+  gap: 12px;
+}
+
+.profile__details dt {
+  font-weight: 700;
+  color: var(--navy-2);
+}
+
+.profile__details dd {
+  margin: 0;
+}
+
 .profile__more {
   margin-top: 20px;
   display: grid;
@@ -2548,6 +2585,21 @@ dialog::backdrop {
   gap: 18px;
   flex-wrap: wrap;
   font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .profile__top {
+    gap: 12px;
+  }
+
+  .profile__name {
+    font-size: 1.45rem;
+  }
+
+  .profile__details > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }
 
 .lightbox {
