@@ -34,6 +34,11 @@ export function LeaderCard({ person, onOpen }) {
       <span className="leader__cap">
         <span className="leader__name">{person.name}</span>
         <span className="leader__role">{person.role}</span>
+        {(person.department || person.team || person.year) && (
+          <span className="leader__meta">
+            {[person.department || person.team, person.year].filter(Boolean).join(" · ")}
+          </span>
+        )}
       </span>
     </button>
   );

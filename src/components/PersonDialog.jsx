@@ -25,9 +25,23 @@ export default function PersonDialog({ person, onClose }) {
             <Avatar person={person} />
             <div>
               <h2 className="profile__name">{person.name}</h2>
-              <p className="profile__role">{[person.role, person.team, person.year].filter(Boolean).join(", ")}</p>
+              <p className="profile__role">{person.role}</p>
             </div>
           </div>
+          <dl className="profile__details">
+            {(person.team || person.department) && (
+              <div>
+                <dt>Department</dt>
+                <dd>{person.team || person.department}</dd>
+              </div>
+            )}
+            {person.year && (
+              <div>
+                <dt>Academic year & branch</dt>
+                <dd>{person.year}</dd>
+              </div>
+            )}
+          </dl>
           {(person.bio || links.length > 0) && (
             <div className="profile__more">
               {person.bio && <p>{person.bio}</p>}

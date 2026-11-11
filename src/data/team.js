@@ -28,6 +28,7 @@ export const faculty = [
 export const coreTeams = [
   {
     team: "Project Team",
+    description: "Leads and mentors student projects, helping teams shape ideas into working builds.",
     members: [
       { name: "Akshat Gupta", role: "Project Head", year: "3rd year, CSE" },
       { name: "Abhay Pant", role: "Project Lead", year: "3rd year, IT" },
@@ -45,6 +46,7 @@ export const coreTeams = [
   },
   {
     team: "Events & Workshop Team",
+    description: "Plans PAJAV events and workshops, coordinating logistics and hands-on learning.",
     members: [
       { name: "Saptarshi Senapati", role: "Events & Workshop Head", year: "2nd year, ME" },
       { name: "Gautam Mishra", role: "Events & Logistics Coordinator", year: "2nd year, CST" },
@@ -55,6 +57,7 @@ export const coreTeams = [
   },
   {
     team: "PR & Outreach Team",
+    description: "Shares PAJAV’s work through creative content, documentation, social media and outreach.",
     members: [
       { name: "Kanika Ahlawat", role: "PR & Outreach Head", year: "4th year, IT" },
       { name: "Ranvir Singh", role: "Creative Lead", year: "2nd year, IT" },
@@ -67,6 +70,7 @@ export const coreTeams = [
   },
   {
     team: "Finance & Records Team",
+    description: "Maintains society records and databases, and coordinates finance-related work.",
     members: [
       { name: "Saksham Saharan", role: "Database Head", year: "2nd year, CSE" },
       { name: "Vansh Vats", role: "Records Coordinator", year: "2nd year, CSE" },

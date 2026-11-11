@@ -1810,6 +1810,36 @@ svg.i {
   opacity: 0.85;
 }
 
+.leader__meta {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  opacity: 0.78;
+}
+
+.people__core-title {
+  margin-bottom: 28px;
+}
+
+.people__department {
+  margin-bottom: 40px;
+}
+
+.people__department:last-child {
+  margin-bottom: 0;
+}
+
+.people__department h3 {
+  margin-bottom: 8px;
+}
+
+.people__department-description {
+  max-width: 680px;
+  margin-bottom: 16px;
+  color: var(--navy-2);
+}
+
 @media (max-width: 900px) {
   .leaders,
   .leaders--3 {
@@ -1820,26 +1850,6 @@ svg.i {
 @media (max-width: 580px) {
   .leaders,
   .leaders--3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-.soon {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: center;
-  padding: 26px;
-  border: 1.5px dashed var(--navy-2);
-  border-radius: var(--r);
-}
-
-.soon .note {
-  font-size: 1.5rem;
-}
-
-@media (max-width: 600px) {
-  .soon {
     grid-template-columns: 1fr;
   }
 }
@@ -2537,6 +2547,27 @@ dialog::backdrop {
   color: var(--navy-2);
 }
 
+.profile__details {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.profile__details > div {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) 1fr;
+  gap: 12px;
+}
+
+.profile__details dt {
+  font-weight: 700;
+  color: var(--navy-2);
+}
+
+.profile__details dd {
+  margin: 0;
+}
+
 .profile__more {
   margin-top: 20px;
   display: grid;
@@ -2548,6 +2579,21 @@ dialog::backdrop {
   gap: 18px;
   flex-wrap: wrap;
   font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .profile__top {
+    gap: 12px;
+  }
+
+  .profile__name {
+    font-size: 1.45rem;
+  }
+
+  .profile__details > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
 }
 
 .lightbox {
